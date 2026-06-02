@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hospital Information System (HIS) Patient Portal
 
-## Getting Started
+A comprehensive Next.js and Oracle DB-powered Healthcare Management System featuring a modern patient portal. It offers real-time access to medical records, prescriptions, lab results, vitals, and surgical history with an intuitive gradient UI.
 
-First, run the development server:
+## 🌟 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The Hospital Information System (HIS) Patient Portal is a full-stack web application designed to empower patients with seamless access to their healthcare data. Built with a robust technology stack, it ensures secure, high-performance data retrieval directly from an Oracle Database while delivering an exceptional user experience with dynamic, responsive design.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Personalized Dashboard**: View health summaries, assigned doctors, and at-a-glance metrics for prescriptions, labs, and vitals.
+- **Prescription Tracking**: Monitor active and completed prescriptions, complete with dosage instructions, refill limits, and doctor notes.
+- **Laboratory Results**: Track pending and completed lab tests, ailment details, and specific results with intuitive status badges.
+- **Vital Signs Monitoring**: Keep track of key health metrics like blood pressure, heart rate, temperature, and oxygen saturation over time.
+- **Surgical History**: Access records of past surgeries, surgeon details, and post-operative notes securely.
+- **Comprehensive Medical Records**: View a unified timeline of diagnoses, treatment plans, and medical history.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Technology Stack
 
-## Learn More
+- **Frontend Framework**: [Next.js](https://nextjs.org) (App Router, Server & Client Components)
+- **UI Library**: React, [shadcn/ui](https://ui.shadcn.com/), Tailwind CSS
+- **Database**: Oracle DB (using the `oracledb` Node.js driver)
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js (v18+)
+- Oracle Database (e.g., Oracle XE or Autonomous Database)
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   ```bash
+   git clone <your-repo-url>
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Oracle Database credentials and JWT secrets:
+   ```env
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_CONNECTION_STRING=localhost:1521/XEPDB1
+   JWT_SECRET=your_jwt_secret
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## 🛡️ Security Note
+
+Sensitive data such as `.env` files, Oracle connection details, and JWT secrets are ignored via `.gitignore` to prevent accidental exposure.

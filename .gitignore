@@ -30,8 +30,18 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# Sensitive Data and Database Config
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+# Oracle Wallet & Network Configs
+wallet.zip
+cwallet.sso
+ewallet.p12
+sqlnet.ora
+tnsnames.ora
 
 # vercel
 .vercel
