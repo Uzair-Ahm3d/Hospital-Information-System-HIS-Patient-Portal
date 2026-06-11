@@ -1,0 +1,38 @@
+services:
+  # ---- The dev container that runs Next.js ----
+  app:
+    image: mcr.microsoft.com/devcontainers/javascript-node:20
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+    environment:
+      # These are read by lib/db.js at runtime (server-side).
+      # 'oracle' is the hostname of the database service below.
+      DB_USER: his_user
+      DB_PASSWORD: his_password
+      DB_CONNECTION_STRING: oracle:1521/XEPDB1
+      JWT_SECRET: dev-only-secret-change-me-please
+    depends_on:
+      oracle:
+        condition: service_healthy   # wait until DB is up AND schema is loaded
+
+  # ---- Oracle XE database (loads your schema automatically on first boot) ----
+  oracle:
+    image: gvenzl/oracle-xe:21-slim
+    environment:
+      ORACLE_PASSWORD: oracle_sys_password   # SYS/SYSTEM password
+      APP_USER: his_user                     # auto-created application user
+      APP_USER_PASSWORD: his_password
+    volumes:
+      # init-db.sh runs once, after the DB is created, to load schema + data.
+      - ./init-db.sh:/container-entrypoint-initdb.d/init-db.sh
+      # Your three schema scripts, mounted where init-db.sh expects them.
+      - ../database/01_SCHEMA_PROJECT_CREATE.sql:/scripts/01_create.sql
+      - ../database/02_SCHEMA_PROJECT_INSERT_PART1.sql:/scripts/02_insert1.sql
+      - ../database/03_SCHEMA_PROJECT_INSERT_PART2.sql:/scripts/03_insert2.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 40
+      start_period: 30s

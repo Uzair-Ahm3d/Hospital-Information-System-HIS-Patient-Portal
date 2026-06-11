@@ -1,0 +1,25 @@
+{
+  "name": "HIS Patient Portal + Oracle XE",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // Install dependencies once the container is built.
+  "postCreateCommand": "npm install",
+
+  // 3000 = Next.js app (auto-opens), 1521 = Oracle (optional, for DB tools).
+  "forwardPorts": [3000, 1521],
+  "portsAttributes": {
+    "3000": { "label": "Next.js App", "onAutoForward": "openPreview" },
+    "1521": { "label": "Oracle XE" }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
